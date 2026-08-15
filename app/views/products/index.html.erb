@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login | Todolist</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background:
+        radial-gradient(circle at top left, #4c1d95, transparent 35%),
+        radial-gradient(circle at bottom right, #1e40af, transparent 35%),
+        linear-gradient(135deg, #080b20, #111633);
+
+      color: white;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 430px;
+      padding: 20px;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      border-radius: 24px;
+      padding: 45px 40px;
+
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+
+      margin: 0 auto 20px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 20px;
+
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+
+      font-size: 32px;
+      font-weight: bold;
+
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #a9b0cc;
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+
+    .alert {
+      padding: 12px 15px;
+      margin-bottom: 20px;
+
+      border-radius: 10px;
+
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+
+      color: #ff9b9b;
+      font-size: 14px;
+    }
+
+    .notice {
+      padding: 12px 15px;
+      margin-bottom: 20px;
+
+      border-radius: 10px;
+
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+
+      color: #86efac;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+
+      font-size: 14px;
+      font-weight: bold;
+
+      color: #d9ddf2;
+    }
+
+    .form-group input {
+      width: 100%;
+
+      padding: 14px 16px;
+
+      border-radius: 12px;
+
+      border: 1px solid rgba(255, 255, 255, 0.15);
+
+      background: rgba(0, 0, 0, 0.25);
+
+      color: white;
+
+      outline: none;
+
+      font-size: 15px;
+
+      transition: 0.2s;
+    }
+
+    .form-group input::placeholder {
+      color: #777f9d;
+    }
+
+    .form-group input:focus {
+      border-color: #8b5cf6;
+
+      box-shadow:
+        0 0 0 3px rgba(139, 92, 246, 0.15);
+    }
+
+    .login-button {
+      width: 100%;
+
+      padding: 14px;
+
+      border: none;
+      border-radius: 12px;
+
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+
+      color: white;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+
+      box-shadow:
+        0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 15px 30px rgba(99, 102, 241, 0.45);
+    }
+
+    .login-button:active {
+      transform: translateY(0);
+    }
+
+    .signup {
+      text-align: center;
+
+      margin-top: 25px;
+
+      color: #9299b8;
+
+      font-size: 14px;
+    }
+
+    .signup a {
+      color: #a78bfa;
+
+      text-decoration: none;
+
+      font-weight: bold;
+    }
+
+    .signup a:hover {
+      text-decoration: underline;
+    }
+
+    .demo-account {
+      margin-top: 25px;
+
+      padding: 14px;
+
+      border-radius: 12px;
+
+      background: rgba(255, 255, 255, 0.04);
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      font-size: 12px;
+
+      color: #9ca3b8;
+
+      text-align: center;
+
+      line-height: 1.8;
+    }
+
+    .demo-account strong {
+      color: #c4b5fd;
+    }
+
+    @media (max-width: 500px) {
+      .login-box {
+        padding: 35px 25px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <div class="login-box">
+
+      <div class="logo">
+        ✓
+      </div>
+
+      <h1>Ohm888</h1>
+
+      <p class="subtitle">
+        Login to your Todolist account
+      </p>
+
+      <% if flash[:alert] %>
+        <div class="alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div class="notice">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <%= form_with url: login_path, method: :post, local: true do |form| %>
+
+        <div class="form-group">
+          <%= form.label :email, "Email Address" %>
+
+          <%= form.email_field :email,
+              placeholder: "Enter your email",
+              autocomplete: "email",
+              required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :password, "Password" %>
+
+          <%= form.password_field :password,
+              placeholder: "Enter your password",
+              autocomplete: "current-password",
+              required: true %>
+        </div>
+
+        <%= form.submit "Login", class: "login-button" %>
+
+      <% end %>
+
+      <div class="signup">
+        Don't have an account?
+        <a href="#">Sign up</a>
+      </div>
+
+      <div class="demo-account">
+        <strong>Demo Account</strong><br>
+        Email: admin@gmail.com<br>
+        Password: 123456
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
