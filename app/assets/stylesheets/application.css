@@ -1,10 +1,199 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.section-subtitle {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 24px 24px;
+  margin-top: 32px;
+}
+
+.field-span-4 {
+  grid-column: span 1;
+}
+
+.field-span-full {
+  grid-column: 1 / -1;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #f3f4f6;
+  margin-bottom: 8px;
+}
+
+.field-input-wrap {
+  margin-top: 8px;
+}
+
+.field-input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #f9fafb;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.field-input::placeholder {
+  color: #6b7280;
+}
+
+.field-input:focus {
+  border-color: rgba(99, 102, 241, 0.9);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.field-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #6366f1;
+}
+
+.checkbox-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-help {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+.tak-form-errors {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+  color: #fecaca;
+}
+
+.tak-form-errors h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.tak-form-errors ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  padding-top: 24px;
+}
+
+.cancel-btn,
+.submit-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancel-btn {
+  color: #f3f4f6;
+  background: transparent;
+}
+
+.submit-btn {
+  color: white;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+}
+
+@media (min-width: 640px) {
+  .field-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .field-span-4 {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 640px) {
+  .tak-header,
+  .tak-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tak-title {
+    font-size: 2rem;
+  }
+
+  .tak-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .action-link,
+  .tak-btn,
+  .form-actions {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-shell {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,46 @@
+<%= form_with(model: tak, class: "mx-auto w-full max-w-4xl") do |form| %>
+  <% if tak.errors.any? %>
+    <div class="mb-6 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-red-200">
+      <h2 class="mb-2 text-base font-semibold"><%= pluralize(tak.errors.count, "error") %> prohibited this tak from being saved:</h2>
+      <ul class="list-disc space-y-1 pl-5 text-sm">
+        <% tak.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-2xl shadow-slate-950/30 sm:p-8">
+    <div class="border-b border-white/10 pb-8">
+      <h2 class="text-base font-semibold text-white">Task Details</h2>
+      <p class="mt-1 text-sm text-slate-400">Create a clear task for your to-do list.</p>
+
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-6">
+        <div class="sm:col-span-6">
+          <%= form.label :title, class: "mb-2 block text-sm font-medium text-slate-100" %>
+          <%= form.text_field :title, class: "block w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-base text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 sm:text-sm", placeholder: "Write your task here" %>
+        </div>
+
+        <div class="sm:col-span-6">
+          <%= form.label :description, class: "mb-2 block text-sm font-medium text-slate-100" %>
+          <%= form.text_area :description, rows: 5, class: "block w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-base text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 sm:text-sm", placeholder: "เพิ่มรายละเอียดของกิจกรรม เช่น วันเวลา, วิธีทำ, หมายเหตุ หรือความต้องการเพิ่มเติม" %>
+        </div>
+
+        <div class="sm:col-span-6">
+          <div class="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-3">
+            <%= form.check_box :completed, class: "mt-1 h-4 w-4 rounded border-white/10 bg-slate-800 text-indigo-500 focus:ring-indigo-500" %>
+            <div>
+              <%= form.label :completed, class: "block text-sm font-medium text-slate-100" %>
+              <p class="mt-1 text-sm text-slate-400">Mark this task as finished when it is done.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-end gap-3">
+      <%= link_to "Cancel", taks_path, class: "rounded-md px-3 py-2 text-sm font-semibold text-slate-200 hover:bg-white/5" %>
+      <%= form.submit "Save", class: "rounded-md bg-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:bg-indigo-400" %>
+    </div>
+  </div>
+<% end %>

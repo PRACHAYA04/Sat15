@@ -1,0 +1,73 @@
+<div class="min-h-screen bg-slate-950 px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-3xl">
+    <% if notice.present? %>
+      <p class="mb-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-300"><%= notice %></p>
+    <% end %>
+
+    <div class="rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-2xl shadow-slate-950/30 sm:p-8">
+      <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-3">
+          <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/20 text-xl shadow-lg shadow-indigo-500/20">📌</span>
+          <h1 class="text-3xl font-bold text-white">Task Details</h1>
+        </div>
+
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold <%= @tak.completed ? 'bg-emerald-500/15 text-emerald-300' : 'bg-amber-500/15 text-amber-300' %>">
+          <%= @tak.completed ? '✅ Completed' : '⏳ Pending' %>
+        </span>
+      </div>
+
+      <div class="space-y-6 rounded-2xl border border-white/10 bg-slate-800/40 p-5">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Title</p>
+          <h2 class="mt-2 text-3xl font-bold text-white"><%= @tak.title %></h2>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Details</p>
+          <p class="mt-2 text-base leading-7 text-slate-200"><%= @tak.description.present? ? @tak.description : 'No additional details have been added yet.' %></p>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Status</p>
+          <p class="mt-2 text-base text-slate-200"><%= @tak.completed ? 'This task is already completed.' : 'This task is still in progress.' %></p>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <%= link_to "✏️ Edit", edit_tak_path(@tak), class: "inline-flex items-center justify-center rounded-xl bg-indigo-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:bg-indigo-400" %>
+        <%= link_to "← Back to taks", taks_path, class: "inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:bg-white/10" %>
+        <button type="button" command="show-modal" commandfor="delete-tak-dialog" class="inline-flex items-center justify-center rounded-xl bg-red-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-red-500/30 transition hover:bg-red-400">🗑 Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<el-dialog>
+  <dialog id="delete-tak-dialog" aria-labelledby="dialog-title" class="fixed inset-0 m-0 h-auto w-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent" role="dialog" aria-modal="true" aria-describedby="dialog-message">
+    <el-dialog-backdrop class="fixed inset-0 bg-slate-950/60 transition-opacity"></el-dialog-backdrop>
+
+    <div tabindex="0" class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
+      <el-dialog-panel class="relative w-full max-w-lg overflow-hidden rounded-2xl bg-slate-800 text-left shadow-2xl outline outline-1 -outline-offset-1 outline-white/10">
+        <div class="bg-slate-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left">
+            <div class="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-500/10 sm:mx-0 sm:h-10 sm:w-10">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-6 w-6 text-red-400" aria-hidden="true">
+                <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="mt-3 sm:ml-4 sm:mt-0">
+              <h3 id="dialog-title" class="text-base font-semibold text-white">Delete task</h3>
+              <div class="mt-2">
+                <p id="dialog-message" class="text-sm text-slate-400">Are you sure you want to delete this task? This action cannot be undone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center gap-3 bg-slate-700/30 px-4 py-3 sm:flex-row-reverse sm:px-6">
+          <button type="button" command="close" commandfor="delete-tak-dialog" class="inline-flex w-full justify-center rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10 sm:w-auto">Cancel</button>
+          <%= button_to "Delete", @tak, method: :delete, class: "inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-red-400 sm:w-auto" %>
+        </div>
+      </el-dialog-panel>
+    </div>
+  </dialog>
+</el-dialog>

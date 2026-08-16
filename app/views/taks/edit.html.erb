@@ -1,0 +1,12 @@
+<% content_for :title, "Editing tak" %>
+
+<h1>Editing tak</h1>
+
+<%= render "form", tak: @tak %>
+
+<br>
+
+<div>
+  <%= link_to "Show this tak", @tak %> |
+  <%= link_to "Back to taks", taks_path %>
+</div>

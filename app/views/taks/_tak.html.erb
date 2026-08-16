@@ -1,0 +1,20 @@
+<div id="<%= dom_id tak %>" class="rounded-2xl border border-white/10 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/20 backdrop-blur-sm">
+  <div class="flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/15 text-lg font-bold text-indigo-300"><%= tak.completed ? '✓' : '•' %></span>
+      <div>
+        <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Task</p>
+        <h2 class="text-xl font-semibold text-white"><%= tak.title %></h2>
+      </div>
+    </div>
+
+    <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold <%= tak.completed ? 'bg-emerald-500/15 text-emerald-300' : 'bg-amber-500/15 text-amber-300' %>">
+      <%= tak.completed ? '✅ Completed' : '⏳ Pending' %>
+    </span>
+  </div>
+
+  <div class="mt-5 flex flex-wrap gap-3">
+    <%= link_to "👁 Show", tak, class: "inline-flex items-center justify-center rounded-lg border border-indigo-400/30 bg-indigo-500/10 px-4 py-2 text-sm font-semibold text-indigo-200 transition hover:bg-indigo-500/20" %>
+    <%= link_to "✏️ Edit", edit_tak_path(tak), class: "inline-flex items-center justify-center rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10" %>
+  </div>
+</div>
