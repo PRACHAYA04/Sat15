@@ -27,6 +27,7 @@ class TaksController < ApplicationController
       if @tak.save
         format.html { redirect_to @tak, notice: "Tak was successfully created." }
         format.json { render :show, status: :created, location: @tak }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_content }
         format.json { render json: @tak.errors, status: :unprocessable_content }
@@ -40,6 +41,7 @@ class TaksController < ApplicationController
       if @tak.update(tak_params)
         format.html { redirect_to @tak, notice: "Tak was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @tak }
+        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_content }
         format.json { render json: @tak.errors, status: :unprocessable_content }
@@ -54,6 +56,7 @@ class TaksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to taks_path, notice: "Tak was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
+      format.turbo_stream
     end
   end
 

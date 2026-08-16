@@ -1,4 +1,4 @@
-<%= form_with(model: tak, class: "mx-auto w-full max-w-4xl") do |form| %>
+<%= form_with(model: tak, class: "mx-auto w-full max-w-4xl", id: "tak-form", local: true) do |form| %>
   <% if tak.errors.any? %>
     <div class="mb-6 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-red-200">
       <h2 class="mb-2 text-base font-semibold"><%= pluralize(tak.errors.count, "error") %> prohibited this tak from being saved:</h2>
